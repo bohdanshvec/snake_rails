@@ -1,0 +1,3 @@
+<%= turbo_stream.update "field" do %>
+  <%= render partial: "games/field", locals: { field: @game.field_array, count: @game.count } %>
+<% end %>
