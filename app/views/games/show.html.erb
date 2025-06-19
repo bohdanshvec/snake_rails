@@ -1,9 +1,8 @@
 <h3>Игра: Змейка</h3>
-
-<%= button_to 'Обновить (tick)', game_path(@game), method: :patch %>
-
+<div><%= cookies[:snake] %></div>
+<div><%= cookies[:snake].class %></div>
 <div data-controller="game" data-game-game-id-value="<%= @game.id %>">
   <div id="field">
-    <%= render partial: "games/field", locals: { field: @game.field_array, count: @game.count } %>
+    <%= render partial: "games/field", locals: { field: @game.field_array(@snake) } %>
   </div>
 </div>

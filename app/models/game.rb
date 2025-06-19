@@ -4,13 +4,6 @@ class Game < ApplicationRecord
   FIELD_WIDTH_GAMING = FIELD_WIDTH - 2
   FIELD_HEIGHT_GAMING = FIELD_HEIGHT - 4
 
-  after_initialize :setup_default
-
-  def setup_default
-    self.count ||= 0
-    self.field ||= default_field.join("\n")
-  end
-
   def default_field
     arr = []
     arr << ("-" * FIELD_WIDTH)
@@ -19,14 +12,27 @@ class Game < ApplicationRecord
     arr
   end
 
-  def field_array
-    field.to_s.split("\n")
+  def field_array(cookies_snake)
+    arr_print = default_field.map(&:dup)
+    cookies_snake.each_with_index do |coord, index|
+      x = coord[:x]
+      y = coord[:y]
+
+      # Заменяем пробел в строке `arr[y]` на символ 'o' на позиции x
+      if index == 0
+        arr_print[y][x] = "s"
+      else
+        arr_print[y][x] = "o"
+      end
+    end
+    arr_print
+    # default_field
   end
 
-  def tick!
-    self.count += 1
-    # Тут можно обновлять field, змею и т.д.
-    save!
-  end
+  # def tick!
+  #   self.count += 1
+  #   # Тут можно обновлять field, змею и т.д.
+  #   save!
+  # end
 end
 
