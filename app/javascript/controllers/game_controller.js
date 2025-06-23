@@ -54,6 +54,7 @@ export default class extends Controller {
 
 
   tick() {
+
     let headers = {
       Accept: "text/vnd.turbo-stream.html",
       "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
@@ -77,6 +78,14 @@ export default class extends Controller {
       })
       .then(html => {
         Turbo.renderStreamMessage(html)
+
+        const field = document.getElementById('field')
+        console.log('DATASET:', field?.dataset.gameOver)
+        if (field?.dataset.gameOver === 'true') {
+          alert('Game over!')
+          clearInterval(this.interval)
+          return
+        }
       })
       .catch(error => {
         console.error("Turbo Stream update failed:", error)

@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
   private
@@ -16,7 +15,7 @@ class ApplicationController < ActionController::Base
     cookies_to_array(cookies[:snake]) || []
   end
 
-  def update_snake(snake_array)
+  def update_cookies_snake(snake_array)
     cookies[:snake] = cookies_to_json(snake_array)
   end
 end

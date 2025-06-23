@@ -1,24 +1,7 @@
-# README
+Когда потребуется масштаб — можно будет переключиться на:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Redis
 
-Things you may want to cover:
+WebSocket
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+или даже игровой сервер отдельно от Rails
