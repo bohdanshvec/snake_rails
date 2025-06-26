@@ -1,6 +1,6 @@
 class Game < ApplicationRecord
-  FIELD_WIDTH = 100
-  FIELD_HEIGHT = 25
+  FIELD_WIDTH = 130
+  FIELD_HEIGHT = 28
   FIELD_WIDTH_GAMING = FIELD_WIDTH - 2
   FIELD_HEIGHT_GAMING = FIELD_HEIGHT - 4
 
@@ -26,13 +26,7 @@ class Game < ApplicationRecord
       end
     end
     arr_print
-    # default_field
   end
 
-  # def tick!
-  #   self.count += 1
-  #   # Тут можно обновлять field, змею и т.д.
-  #   save!
-  # end
 end
 

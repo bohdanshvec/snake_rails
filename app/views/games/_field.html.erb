@@ -1,5 +1,6 @@
 <div id="field" data-game-over="<%= game_over %>">
-  <%= @snake %>
+  <%= @text_game_over if @text_game_over %>
+
 <pre>
 <%= field.join("\n") %>
 </pre>
