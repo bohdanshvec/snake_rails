@@ -7,9 +7,8 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.create!
-    cookies[:snake] = cookies_to_json([{ x: 6, y: 1, direction: :right }, { x: 5, y: 1, direction: :right }, { x: 4, y: 1, direction: :right }, { x: 3, y: 1, direction: :right }, { x: 2, y: 1, direction: :right }, { x: 1, y: 1, direction: :right }])
-    cookies[:turns] = cookies_to_json([])
-    # binding.irb
+    SnakeState.start(cookies).save!
+    binding.irb
     redirect_to game_path(@game) #, status: :see_other
   end
 
