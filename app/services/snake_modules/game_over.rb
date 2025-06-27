@@ -9,7 +9,7 @@ module SnakeModules
 
       return [SELF, true] if body.any? { |s| s[:x] == head[:x] && s[:y] == head[:y] }
       # return :barrier if @barrier_coordinate.any? { |b| b[:x] == head[:x] && b[:y] == head[:y] }
-      return [OUT_OF_BOUNDS, true] if head[:y] < 1 || head[:y] > 28 || head[:x] < 1 || head[:x] > 130
+      return [OUT_OF_BOUNDS, true] if head[:y] < 1 || head[:y] > 27 || head[:x] < 1 || head[:x] > 130
 
       false
     end

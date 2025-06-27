@@ -99,7 +99,7 @@ export default class extends Controller {
         const field = document.getElementById('field')
         if (field?.dataset.gameOver === 'true') {
           alert('Game over!')
-          clearInterval(this.interval)
+          Turbo.visit('/games')
           return
         }
       })
