@@ -1,6 +1,9 @@
 class SnakeState
 
   SIZE_PYTHON = 6
+  GAME_KEYS = %i[snake turns apples barriers]
+
+  attr_accessor :snake, :turns#, :apples, :barriers
 
   def initialize(cookies)
     @cookies = cookies
@@ -11,7 +14,7 @@ class SnakeState
 
   def self.start(cookies)
     # Удаляем все старые куки
-    cookies.each { |key, _| cookies.delete(key) }
+    GAME_KEYS.each { |key| cookies.delete(key) }
 
     # Создаём и возвращаем новый экземпляр SnakeState
     new(cookies)
