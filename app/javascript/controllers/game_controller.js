@@ -57,7 +57,7 @@ export default class extends Controller {
   }
 
   startLoop() {
-    this.interval = setInterval(() => this.tick(), 500)
+    this.interval = setInterval(() => this.tick(), 300)
   }
 
   tick() {

@@ -1,4 +1,4 @@
-module SnakeModules
+module ProcessModules
   module PositionSnake
     def self.change_coordinates_snake(snake)
       snake.map! { |segment| self.change_segment_snake(segment) }
