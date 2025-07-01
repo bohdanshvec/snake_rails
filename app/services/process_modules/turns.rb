@@ -1,7 +1,6 @@
 module ProcessModules
   module Turns
 
-    # добавляем координаты поворота в массив @turns
     def self.add_turns(snake, direction, turns)
       direction_head = snake.first[:direction].to_sym
 
@@ -15,12 +14,10 @@ module ProcessModules
       end
     end
 
-    # добавляем координаты поворота в массив @turns
     def self.add_turns_coordinate(snake, direction, turns)
       turns << { x: snake.first[:x], y: snake.first[:y], direction: direction }
     end
     
-    # удаляем повороты, которые совпадают с последним сегментом (хвостом), весь питон прошол данный поворот
     def self.delete_coordinates_turn(snake,turns)
       turns.reject! do |turn|
         last = snake.last

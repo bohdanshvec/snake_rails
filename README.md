@@ -1,7 +1,38 @@
-Когда потребуется масштаб — можно будет переключиться на:
+# Classic Snake Game
 
-Redis
+This is a classic Snake game. The snake (`ooooos`) crawls across the field, collects apples (`@`), and grows longer. It can crash into obstacles (`#`).
 
-WebSocket
+## 🎮 Gameplay Features
 
-или даже игровой сервер отдельно от Rails
+- **Field size**: Static — `130x27`
+- **Apples** (`@`): 30 total. When one is eaten, it respawns elsewhere.
+- **Obstacles** (`#`): 30 total
+- **Movement**: Controlled with arrow keys (`↑`, `↓`, `←`, `→`)
+- **Refresh rate**: Every `0.3` seconds
+- **Exit**: Press `ESCAPE` to quit the game
+
+### ❌ Game Over Conditions
+
+You lose the game if:
+
+- You move **out of bounds**
+- The **snake’s head collides with its own body**
+- The **snake’s head hits an obstacle**
+
+At the end of the game, the reason for the loss is displayed, and you are redirected to the **home page**.
+
+---
+
+## 🛠️ Roadmap (Planned Features)
+
+- [ ] Add styling using **Bootstrap**
+- [ ] Let users define the **field size**
+- [ ] Add **game statistics**
+- [ ] Add **difficulty levels**
+- [ ] Implement **player registration** and **stat tracking**
+- [ ] Support for **two languages**: Ukrainian 🇺🇦 and English 🇬🇧
+- [ ] Add **mobile device support**
+
+---
+
+Feel free to contribute or give feedback!

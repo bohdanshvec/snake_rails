@@ -2,13 +2,11 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :update]
 
   def index
-    # binding.irb
   end
 
   def create
     @game = Game.create!
     GameData.delete_old_cookies(cookies)
-    # binding.irb
     redirect_to game_path(@game) #, status: :see_other
   end
 
@@ -16,7 +14,6 @@ class GamesController < ApplicationController
     get_data_game
     @game_over = nil
     @state.save!
-    # binding.irb
   end
 
   def update
@@ -30,11 +27,12 @@ class GamesController < ApplicationController
 
     return if @game_over
 
-    @snake, @turns = ProcessGame.tick!(@snake, @direction, @turns)
+    @snake, @turns, @apples = ProcessGame.tick!(@snake, @direction, @apples, @barriers, @turns)
 
     # update cookies for next request
     @state.snake = @snake
     @state.turns = @turns
+    @state.apples = @apples
     @state.save!
 
 
@@ -55,7 +53,8 @@ class GamesController < ApplicationController
     @snake = @state.snake
     @turns = @state.turns
     @barriers = @state.barriers
-    @field = FieldRenderer.render_field(@snake, @barriers)
+    @apples = @state.apples
+    @field = FieldRenderer.render_field(@snake, @barriers, @apples)
   end
-
+    # binding.irb
 end
