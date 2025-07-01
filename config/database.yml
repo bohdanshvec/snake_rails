@@ -82,9 +82,9 @@ production:
   primary: &primary_production
     <<: *default
     url: <%= ENV["DATABASE_URL"] %>
-    database: python_rails_production
-    username: python_rails
-    password: <%= ENV["PYTHON_RAILS_DATABASE_PASSWORD"] %>
+    # database: python_rails_production
+    # username: python_rails
+    # password: <%= ENV["PYTHON_RAILS_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: python_rails_production_cache
