@@ -36,3 +36,5 @@ At the end of the game, the reason for the loss is displayed, and you are redire
 ---
 
 Feel free to contribute or give feedback!
+
+V_1.1

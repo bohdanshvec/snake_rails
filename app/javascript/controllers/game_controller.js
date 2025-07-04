@@ -61,7 +61,7 @@ export default class extends Controller {
   }
 
   tick() {
-    // // Если quit уже нажали — останови цикл до запроса
+    // Если quit уже нажали — останови цикл до запроса
     // if (this.quit) {
     //   clearInterval(this.interval)
     //   alert('Game over!')
@@ -99,6 +99,7 @@ export default class extends Controller {
         const field = document.getElementById('field')
         if (field?.dataset.gameOver === 'true') {
           alert('Game over!')
+          clearInterval(this.interval)
           Turbo.visit('/games')
           return
         }
