@@ -1,9 +1,12 @@
-<h1>Game Python V_1.0</h1>
-<%= button_to 'New game', games_path, turbo_method: :post %>
-
+<header class="p-1 my-3 bg-secondary text-white">
+  <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+    <h1>Game Python V_1.0</h1>
+    <%= button_to 'New game', games_path, class: "btn btn-primary m-3 ", turbo_method: :post %>
+  </nav>
+</header>
 <div>
   <ul>Це класична гра пітон (змія). Пітон (ooooos) повзає по полю, збирає яблука ( @ ) та росте. Може зіткнутися з перешкодою ( # ).</ul>
-  <ul>Зараз розмір поля статичний: 130x27</ul>
+  <ul>Зараз розмір поля статичний: 110x25</ul>
   <ul>Яблук ( @ ) - 30 шт., коли з'їли - з'являється в іншому місці.</ul>
   <ul>Перешкод ( # ) - 30 шт.</ul>
   <ul>Рух відбувається за допомогою клавіш - стрілочок.</ul>
@@ -16,14 +19,18 @@
   </ul>
 
   <ul>По закінченню гри буде вказата причина програшу, та ви вийдете на головну сторінку.</ul>
-  <ul></ul>
-  <ul>Плани на майбутне:
-    <li>Оформлення за допомогою Bootstrap.</li>
-    <li>Розмір поля задає користувач.</li>
-    <li>Додавання статистики гри.</li>
-    <li>Додвання рівней складності.</li>
-    <li>Реєстрація гравців та збереження їх статистики.</li>
-    <li>Дві мови, українська та англійська.</li>
-    <li>Можливість грати на мобільних пристроях</li>
-  </ul>
+
+  <div class="dropdown">
+    <button class="btn btn-info dropdown-toggle m-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Плани на майбутне:
+    </button>
+    <ul class="dropdown-menu bg-secondary">
+      <li class="dropdown-item text-white">- Розмір поля задає користувач</li>
+      <li class="dropdown-item text-white">- Додавання статистики гри</li>
+      <li class="dropdown-item text-white">- Додвання рівней складності</li>
+      <li class="dropdown-item text-white">- Реєстрація гравців та збереження їх статистики</li>
+      <li class="dropdown-item text-white">- Дві мови, українська та англійська</li>
+      <li class="dropdown-item text-white">- Можливість грати на мобільних пристроях</li>
+    </ul>
+  </div>
 </div>

@@ -1,5 +1,7 @@
-<div id="field" data-game-over="<%= game_over %>">
-  <%= @text_game_over if @text_game_over %>
+<div id="field" class="ascii-block" data-game-over="<%= game_over %>">
+  <% if @text_game_over %>
+    <div class="text-danger fs-6 ms-2 mt-1"><%= @text_game_over %></div>
+  <% end %>
 
 <pre>
 <%= field.join("\n") %>
