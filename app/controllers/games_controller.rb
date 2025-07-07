@@ -23,11 +23,11 @@ class GamesController < ApplicationController
 
     get_data_game
 
-    @text_game_over, @game_over = ProcessGame.game_over?(@snake, @barriers, @quit)
+    @text_game_over, @game_over = ProcessGame.game_over?(@snake, @barriers, @config, @quit)
 
     return if @game_over
 
-    @snake, @turns, @apples = ProcessGame.tick!(@snake, @direction, @apples, @barriers, @turns)
+    @snake, @turns, @apples = ProcessGame.tick!(@snake, @direction, @apples, @barriers, @config, @turns)
 
     # update cookies for next request
     @state.snake = @snake
@@ -49,12 +49,13 @@ class GamesController < ApplicationController
   end
 
   def get_data_game
-    @state = GameData.new(cookies)
+    @config = GameConfig.new(cookies)
+    @state = GameData.new(cookies, @config)
     @snake = @state.snake
     @turns = @state.turns
     @barriers = @state.barriers
     @apples = @state.apples
-    @field = FieldRenderer.render_field(@snake, @barriers, @apples)
+    @field = FieldRenderer.render_field(@snake, @barriers, @apples, @config)
   end
     # binding.irb
 end
