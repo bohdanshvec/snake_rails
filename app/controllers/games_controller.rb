@@ -2,12 +2,39 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :update]
 
   def index
+    # binding.irb
+    @cookies = cookies
+    @game = Game.new(
+      field_width: @cookies[:field_width],
+      field_height: @cookies[:field_height],
+      apples_count: @cookies[:apples_count],
+      barriers_count: @cookies[:barriers_count]
+    )
   end
 
   def create
-    @game = Game.create!
     GameData.delete_old_cookies(cookies)
-    redirect_to game_path(@game) #, status: :see_other
+
+    game_attributes = params[:game]&.permit(:field_width, :field_height, :apples_count, :barriers_count) || {
+      field_width: 110,
+      field_height: 25,
+      apples_count: 30,
+      barriers_count: 30
+    }
+
+    @game = Game.new(game_attributes)
+
+    if @game.valid?
+      cookies[:field_width]     = @game.field_width
+      cookies[:field_height]    = @game.field_height
+      cookies[:apples_count]    = @game.apples_count
+      cookies[:barriers_count]  = @game.barriers_count
+
+      @game.save!
+      redirect_to game_path(@game)
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   def show

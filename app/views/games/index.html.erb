@@ -1,9 +1,94 @@
 <header class="p-1 my-3 bg-secondary text-white">
   <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
     <h1>Game Python V_1.0</h1>
-    <%= button_to 'New game', games_path, class: "btn btn-primary m-3 ", turbo_method: :post %>
   </nav>
 </header>
+
+<div class="container">
+  <div class="row">
+
+    <!-- Стандартна гра -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title">Стандартна гра</h4>
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item">Ширина поля: <strong>100</strong></li>
+            <li class="list-group-item">Висота поля: <strong>25</strong></li>
+            <li class="list-group-item">Кількість яблук: <strong>30</strong></li>
+            <li class="list-group-item">Кількість перешкод: <strong>30</strong></li>
+          </ul>
+
+          <%= button_to 'Почати стандартну гру', games_path, class: "btn btn-primary w-100", turbo_method: :post %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Кастомна гра -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title">Гра з заданими параметрами</h4>
+
+          <% if @game.errors.any? %>
+            <div class="alert alert-danger">
+              <h5>Помилки у формі:</h5>
+              <ul>
+                <% @game.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <%= form_with model: @game, url: games_path, method: :post, local: true do |f| %>
+
+            <div class="row mb-2 align-items-center">
+              <div class="col-6">
+                <%= f.label :field_width, "Ширина поля", class: "form-label mb-0" %>
+              </div>
+              <div class="col-6">
+                <%= f.number_field :field_width, min: 10, max: 300, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="row mb-2 align-items-center">
+              <div class="col-6">
+                <%= f.label :field_height, "Висота поля", class: "form-label mb-0" %>
+              </div>
+              <div class="col-6">
+                <%= f.number_field :field_height, min: 5, max: 100, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="row mb-2 align-items-center">
+              <div class="col-6">
+                <%= f.label :apples_count, "Кількість яблук", class: "form-label mb-0" %>
+              </div>
+              <div class="col-6">
+                <%= f.number_field :apples_count, min: 1, max: 100, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+              <div class="col-6">
+                <%= f.label :barriers_count, "Кількість перешкод", class: "form-label mb-0" %>
+              </div>
+              <div class="col-6">
+                <%= f.number_field :barriers_count, min: 0, max: 100, class: "form-control" %>
+              </div>
+            </div>
+
+            <%= f.submit "Почати гру з параметрами", class: "btn btn-success w-100" %>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <div>
   <ul>Це класична гра пітон (змія). Пітон (ooooos) повзає по полю, збирає яблука ( @ ) та росте. Може зіткнутися з перешкодою ( # ).</ul>
   <ul>Зараз розмір поля статичний: 110x25</ul>
@@ -25,9 +110,7 @@
       Плани на майбутне:
     </button>
     <ul class="dropdown-menu bg-secondary">
-      <li class="dropdown-item text-white">- Розмір поля задає користувач</li>
       <li class="dropdown-item text-white">- Додавання статистики гри</li>
-      <li class="dropdown-item text-white">- Додвання рівней складності</li>
       <li class="dropdown-item text-white">- Реєстрація гравців та збереження їх статистики</li>
       <li class="dropdown-item text-white">- Дві мови, українська та англійська</li>
       <li class="dropdown-item text-white">- Можливість грати на мобільних пристроях</li>
