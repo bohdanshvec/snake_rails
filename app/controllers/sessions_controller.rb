@@ -5,7 +5,10 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to games_path, status: :see_other
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: "Успішний вхід!" }
+        format.turbo_stream
+      end
     else
       flash.now[:alert] = "Невірна пошта або пароль"
       render :new, status: :unprocessable_entity
