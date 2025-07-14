@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :update]
 
   def index
+    @user = User.new
     @cookies = cookies
     @game = Game.new(
       field_width: @cookies[:field_width],

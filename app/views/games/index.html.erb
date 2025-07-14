@@ -5,17 +5,35 @@
     <div class="ms-auto d-flex align-items-center">
       <% if user_signed_in? %>
         <span class="me-2">Привіт, <%= current_user.username %>!</span>
-        <%= link_to "Вийти", session_path, method: :delete, class: "btn btn-outline-light" %>
+        <%= link_to "Вийти", session_path, data: {turbo_method: :delete},  class: "btn btn-outline-light" %>
       <% else %>
-        <%= link_to "Вхід", new_session_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
-        <%= link_to "Реєстрація", new_user_path, data: { turbo_frame: 'registration' }, class: "btn btn-outline-light" %>
+        <div class="dropdown me-2">
+          <button class="btn btn-outline-light dropdown-toggle" type="button" id="registrationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            Реєстрація
+          </button>
+
+          <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 520px;" data-turbo-frame="registration">
+            <%= turbo_frame_tag "registration" do %>
+              <%= render 'users/registration' %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="btn btn-outline-light dropdown-toggle" type="button" id="loginDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            Вхід
+          </button>
+
+          <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 320px;" data-turbo-frame="login">
+            <%= turbo_frame_tag "login" do %>
+              <%= render 'sessions/login' %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </nav>
 </header>
-
-<%= turbo_frame_tag 'login' %>
-<%= turbo_frame_tag 'registration' %>
 
 <div class="container">
   <div class="row">

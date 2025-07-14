@@ -1,38 +1,3 @@
 <%= turbo_frame_tag "registration" do %>
-  <div class="d-flex justify-content-center my-3">
-    <div class="border rounded p-3" style="min-width: 320px;">
-      <%= form_with  model: @user, class: "p-3", local: true do |f| %>
-
-        <% if @user.errors.any? %>
-          <div class="alert alert-danger">
-            <ul>
-              <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <div class="mb-2" style="max-width: 300px;">
-          <%= f.label :username, class: "form-label small" %>
-          <%= f.email_field :username, value: params[:username], placeholder: 'Username', class: 'form-control form-control-sm' %>
-        </div>
-
-        <div class="mb-2" style="max-width: 300px;">
-          <%= f.label :email, class: "form-label small" %>
-          <%= f.email_field :email, value: params[:email], placeholder: 'E-mail', class: 'form-control form-control-sm' %>
-        </div>
-
-        <div class="mb-2" style="max-width: 300px;">
-          <%= f.label :password, class: "form-label small" %>
-          <%= f.password_field :password, class: 'form-control form-control-sm' %>
-        </div>
-
-        <div class="d-flex justify-content-between" style="max-width: 300px;">
-          <%= f.submit "Реєстрація", class: "btn btn-sm btn-primary" %>
-          <%= link_to "Cancel", games_path, class: "btn btn-sm btn-secondary" %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render 'users/registration' %>
 <% end %>
