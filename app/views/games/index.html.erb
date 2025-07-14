@@ -5,17 +5,17 @@
     <div class="ms-auto d-flex align-items-center">
       <% if user_signed_in? %>
         <span class="me-2">Привіт, <%= current_user.username %>!</span>
-        <%= link_to "Вийти", session_path, method: :delete, class: "btn btn-outline-light" %>
+        <%= link_to "Вийти", session_path, data: { turbo_method: :delete }, class: "btn btn-outline-light" %>
       <% else %>
         <%= link_to "Вхід", new_session_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
-        <%= link_to "Реєстрація", new_user_path, data: { turbo_frame: 'registration' }, class: "btn btn-outline-light" %>
+        <%= link_to "Реєстрація", new_user_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light" %>
       <% end %>
     </div>
   </nav>
 </header>
 
 <%= turbo_frame_tag 'login' %>
-<%= turbo_frame_tag 'registration' %>
+<%#= turbo_frame_tag 'registration' %>
 
 <div class="container">
   <div class="row">
