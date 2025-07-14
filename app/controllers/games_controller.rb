@@ -2,7 +2,6 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :update]
 
   def index
-    # binding.irb
     @cookies = cookies
     @game = Game.new(
       field_width: @cookies[:field_width],
@@ -23,6 +22,7 @@ class GamesController < ApplicationController
     }
 
     @game = Game.new(game_attributes)
+    @game.user = current_user if user_signed_in?
 
     if @game.valid?
       cookies[:field_width]     = @game.field_width

@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
-  # include ActiveModel::Model
-  # include ActiveModel::Attributes
 
+  belongs_to :user, optional: true
+  
   attr_accessor :field_width, :field_height, :apples_count, :barriers_count
 
   validates :field_width, numericality: { only_integer: true, greater_than_or_equal_to: 10, less_than_or_equal_to: 200 }
