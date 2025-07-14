@@ -8,7 +8,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Реєстрація успішна!"
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: "Рєестрація успішна!" }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
