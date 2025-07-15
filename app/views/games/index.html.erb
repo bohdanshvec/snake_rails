@@ -5,10 +5,11 @@
     <div class="ms-auto d-flex align-items-center">
       <% if user_signed_in? %>
         <span class="me-2">Привіт, <%= current_user.username %>!</span>
+        <%= link_to "Ваша статистика", user_path(current_user), data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
         <%= link_to "Вийти", session_path, data: { turbo_method: :delete }, class: "btn btn-outline-light" %>
       <% else %>
-        <%= link_to "Вхід", new_session_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
-        <%= link_to "Реєстрація", new_user_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light" %>
+        <%= link_to "Реєстрація", new_user_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
+        <%= link_to "Вхід", new_session_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light" %>
       <% end %>
     </div>
   </nav>
@@ -123,8 +124,6 @@
       Плани на майбутне:
     </button>
     <ul class="dropdown-menu bg-secondary">
-      <li class="dropdown-item text-white">- Додавання статистики гри</li>
-      <li class="dropdown-item text-white">- Реєстрація гравців та збереження їх статистики</li>
       <li class="dropdown-item text-white">- Дві мови, українська та англійська</li>
       <li class="dropdown-item text-white">- Можливість грати на мобільних пристроях</li>
     </ul>

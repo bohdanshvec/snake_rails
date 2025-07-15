@@ -25,11 +25,6 @@ At the end of the game, the reason for the loss is displayed, and you are redire
 
 ## 🛠️ Roadmap (Planned Features)
 
-- [ ] Add styling using **Bootstrap**
-- [ ] Let users define the **field size**
-- [ ] Add **game statistics**
-- [ ] Add **difficulty levels**
-- [ ] Implement **player registration** and **stat tracking**
 - [ ] Support for **two languages**: Ukrainian 🇺🇦 and English 🇬🇧
 - [ ] Add **mobile device support**
 
@@ -37,5 +32,4 @@ At the end of the game, the reason for the loss is displayed, and you are redire
 
 Feel free to contribute or give feedback!
 
-V_1.1
-- connect Bootstrap
+мне нужно создать тут красивую, но акуратную небольшую таблицу статистики игр пользователя с колонками: Гру розпочато, Тривалість гри, Розмір поля, Розкидано яблук, Бар'єри, Зібрано яблук

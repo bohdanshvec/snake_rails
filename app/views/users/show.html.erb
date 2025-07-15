@@ -1,0 +1,32 @@
+<%= turbo_frame_tag "login" do %>
+  <div class="d-flex justify-content-center my-3">
+    <div class="border rounded p-3" style="min-width: 620px;">
+      <h5 class="mb-3">Ваша статистика, <%= @user.username %>:</h5>
+
+      <table class="table table-sm table-striped table-bordered align-middle mb-0">
+        <thead class="table-light text-center">
+          <tr>
+            <th>Гру розпочато</th>
+            <th>Тривалість гри</th>
+            <th>Розмір поля</th>
+            <th>Розкидано яблук</th>
+            <th>Бар'єри</th>
+            <th>Зібрано яблук</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <% @user.games.order(created_at: :desc).limit(10).each do |game| %>
+            <tr>
+              <td><%= l(game.created_at, format: :short) %></td>
+              <td><%= game.duration || "—" %></td>
+              <td><%= "#{game.field_width}×#{game.field_height}" %></td>
+              <td><%= game.apples_count || "—" %></td>
+              <td><%= game.barriers_count || "—" %></td>
+              <td><%= game.collected_apples || "—" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
