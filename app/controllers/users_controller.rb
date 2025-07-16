@@ -19,6 +19,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if params[:all]
+      @games = @user.games.order(created_at: :desc)
+    else
+      @games = @user.games.order(created_at: :desc).limit(5)
+    end
   end
 
   private

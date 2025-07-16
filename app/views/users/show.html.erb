@@ -1,8 +1,10 @@
 <%= turbo_frame_tag "login" do %>
   <div class="d-flex justify-content-center my-3">
     <div class="border rounded p-3" style="min-width: 620px;">
-      <h5 class="mb-3">Ваша статистика, <%= @user.username %>:</h5>
-
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="mb-0 fw-semibold">Ваша статистика :</h5>
+        <%= link_to "Закрити", games_path, class: "btn btn-sm btn-success" %>
+      </div>
       <table class="table table-sm table-striped table-bordered align-middle mb-0">
         <thead class="table-light text-center">
           <tr>
@@ -15,18 +17,31 @@
           </tr>
         </thead>
         <tbody class="text-center">
-          <% @user.games.order(created_at: :desc).limit(10).each do |game| %>
+          <% @games.each do |game| %>
             <tr>
               <td><%= l(game.created_at, format: :short) %></td>
-              <td><%= game.duration || "—" %></td>
-              <td><%= "#{game.field_width}×#{game.field_height}" %></td>
-              <td><%= game.apples_count || "—" %></td>
-              <td><%= game.barriers_count || "—" %></td>
-              <td><%= game.collected_apples || "—" %></td>
+              <td><%= duration_text(game.duration) || "—" %></td>
+              <td><%= "#{game.field_width} × #{game.field_height}" %></td>
+              <td><%= game.apples_count.to_i > 0 ? game.apples_count : "—" %></td>
+              <td><%= game.barriers_count.to_i > 0 ? game.barriers_count : "—" %></td>
+              <td>
+                <% if game.apples_count && (game.apples_count != 0) %>
+                  <%= game.collected_apples.to_i %>
+                <% else %>
+                  <%= game.collected_apples.to_i > 0  ? game.collected_apples : "—" %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
       </table>
+      <div class="mt-2 text-end">
+        <% if params[:all] %>
+          <%= link_to "Останні 5", user_path(@user), data: { turbo_frame: "login" }, class: "btn btn-sm btn-outline-primary" %>
+        <% else %>
+          <%= link_to "Вся статистика", user_path(@user, all: true), data: { turbo_frame: "login" }, class: "btn btn-sm btn-outline-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

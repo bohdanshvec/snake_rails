@@ -31,5 +31,3 @@ At the end of the game, the reason for the loss is displayed, and you are redire
 ---
 
 Feel free to contribute or give feedback!
-
-мне нужно создать тут красивую, но акуратную небольшую таблицу статистики игр пользователя с колонками: Гру розпочато, Тривалість гри, Розмір поля, Розкидано яблук, Бар'єри, Зібрано яблук

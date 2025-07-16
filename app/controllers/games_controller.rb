@@ -52,7 +52,19 @@ class GamesController < ApplicationController
 
     @text_game_over, @game_over = ProcessGame.game_over?(@snake, @barriers, @config, @quit)
 
-    return if @game_over
+    if @game_over
+      if user_signed_in?
+        @game.update(
+          field_width: @config.field_width,
+          field_height: @config.field_height,
+          apples_count: @config.apples_count,
+          barriers_count: @config.barriers_count,
+          collected_apples: (@snake.count - 6),
+          duration: (Time.current - @game.created_at).to_i
+        )
+      end
+      return
+    end
 
     @snake, @turns, @apples = ProcessGame.tick!(@snake, @direction, @apples, @barriers, @config, @turns)
 

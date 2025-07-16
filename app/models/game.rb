@@ -2,8 +2,6 @@ class Game < ApplicationRecord
 
   belongs_to :user, optional: true
   
-  attr_accessor :field_width, :field_height, :apples_count, :barriers_count
-
   validates :field_width, numericality: { only_integer: true, greater_than_or_equal_to: 10, less_than_or_equal_to: 200 }
   validates :field_height, numericality: { only_integer: true, greater_than_or_equal_to: 5, less_than_or_equal_to: 50 }
 

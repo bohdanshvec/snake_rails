@@ -1,6 +1,12 @@
 <div id="field" class="ascii-block" data-game-over="<%= game_over %>">
   <% if @text_game_over %>
-    <div class="text-danger fs-6 ms-2 mt-1"><%= @text_game_over %></div>
+    <div class="fs-6 ms-2 mt-1">
+      <span class="text-danger"><%= @text_game_over %></span>
+      <% if @game.apples_count > 0 %>
+        <br>
+        <span style="color: green;">Кількість зібраних яблук: <%= @snake.count - 6 %></span>
+      <% end %>
+    </div>
   <% end %>
 
 <pre>

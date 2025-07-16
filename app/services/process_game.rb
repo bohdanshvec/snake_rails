@@ -3,7 +3,7 @@ class ProcessGame
   ESCAPE = 'Ви натиснули ESCAPE та вийшли з гри!'
   SELF = 'Ви догнали своє тіло!' 
   OUT_OF_BOUNDS = 'Ви вийшли за поле!'
-  BARRIER = 'Ви врізалися в перешкоду!'
+  BARRIER = 'Ви зіткнулися з перешкодою!'
 
   attr_reader :snake, :direction, :apples, :turns
 

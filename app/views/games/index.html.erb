@@ -1,11 +1,13 @@
 <header class="p-1 my-3 bg-secondary text-white">
   <nav class="container d-flex align-items-center">
-    <h1 class="mb-0">Game Python V_1.0</h1>
+    <h1 class="mb-0">Game Python</h1>
 
     <div class="ms-auto d-flex align-items-center">
       <% if user_signed_in? %>
         <span class="me-2">Привіт, <%= current_user.username %>!</span>
-        <%= link_to "Ваша статистика", user_path(current_user), data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
+          <% if current_user.games.exists? %>
+            <%= link_to "Ваша статистика", user_path(current_user), data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
+          <% end %>
         <%= link_to "Вийти", session_path, data: { turbo_method: :delete }, class: "btn btn-outline-light" %>
       <% else %>
         <%= link_to "Реєстрація", new_user_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
@@ -16,7 +18,6 @@
 </header>
 
 <%= turbo_frame_tag 'login' %>
-<%#= turbo_frame_tag 'registration' %>
 
 <div class="container">
   <div class="row">
@@ -62,7 +63,7 @@
                 <%= f.label :field_width, "Ширина поля", class: "form-label mb-0" %>
               </div>
               <div class="col-6">
-                <%= f.number_field :field_width, min: 10, max: 300, class: "form-control" %>
+                <%= f.number_field :field_width, min: 10, max: 200, class: "form-control" %>
               </div>
             </div>
 
@@ -71,7 +72,7 @@
                 <%= f.label :field_height, "Висота поля", class: "form-label mb-0" %>
               </div>
               <div class="col-6">
-                <%= f.number_field :field_height, min: 5, max: 100, class: "form-control" %>
+                <%= f.number_field :field_height, min: 5, max: 50, class: "form-control" %>
               </div>
             </div>
 
@@ -80,7 +81,7 @@
                 <%= f.label :apples_count, "Кількість яблук", class: "form-label mb-0" %>
               </div>
               <div class="col-6">
-                <%= f.number_field :apples_count, min: 1, max: 100, class: "form-control" %>
+                <%= f.number_field :apples_count, min: 1, class: "form-control" %>
               </div>
             </div>
 
@@ -89,7 +90,7 @@
                 <%= f.label :barriers_count, "Кількість перешкод", class: "form-label mb-0" %>
               </div>
               <div class="col-6">
-                <%= f.number_field :barriers_count, min: 0, max: 100, class: "form-control" %>
+                <%= f.number_field :barriers_count, min: 1, class: "form-control" %>
               </div>
             </div>
 
@@ -103,24 +104,21 @@
   </div>
 </div>
 
-<div>
-  <ul>Це класична гра пітон (змія). Пітон (ooooos) повзає по полю, збирає яблука ( @ ) та росте. Може зіткнутися з перешкодою ( # ).</ul>
-  <ul>Зараз розмір поля статичний: 110x25</ul>
-  <ul>Яблук ( @ ) - 30 шт., коли з'їли - з'являється в іншому місці.</ul>
-  <ul>Перешкод ( # ) - 30 шт.</ul>
+<div class='mx-3'>
+  <ul>Це класична гра пітон (змія). Пітон (ooooos) повзає по полю, збирає яблука ( @ ) та росте. Може зіткнутися з перешкодою ( # ). Яблуко яке з'їли з'являється на новому місці.</ul>
   <ul>Рух відбувається за допомогою клавіш - стрілочок.</ul>
   <ul>Частота оновлення 0.3 секунд.</ul>
   <ul>ESCAPE - вихід з гри.</ul>
-  <ul> Ви програєте, якщо:
-    <li>Вийдете за межі поля</li>
-    <li>Голова стикнеться з тілом</li>
-    <li>Голова стикнеться з перешкодою</li>
+  <ul class="text-danger ms-4"> Ви програєте, якщо:
+    <li class="ms-4">Вийдете за межі поля</li>
+    <li class="ms-4">Голова зіткнеться з тілом</li>
+    <li class="ms-4">Голова зіткнеться з перешкодою</li>
   </ul>
 
   <ul>По закінченню гри буде вказата причина програшу, та ви вийдете на головну сторінку.</ul>
 
   <div class="dropdown">
-    <button class="btn btn-info dropdown-toggle m-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <button class="btn btn-info dropdown-toggle ms-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
       Плани на майбутне:
     </button>
     <ul class="dropdown-menu bg-secondary">
