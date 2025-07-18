@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       respond_to do |format|
-        format.html { redirect_to root_path, notice: "Рєестрація успішна!" }
+        format.html { redirect_to root_path }
         format.turbo_stream
       end
     else

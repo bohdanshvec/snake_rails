@@ -1,31 +1,88 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  en: English
+  uk: Ukrainian
+  activerecord:
+    errors:
+      models:
+        game:
+          attributes:
+            apples_count:
+              too_many_apples: "cannot be more than 2% of the field area (max %{max})"
+            barriers_count:
+              too_many_barriers: "cannot be more than 2% of the field area (max %{max})"
+    attributes:
+      user:
+        username: Name
+        email: Email
+        password: Password
+        password_confirmation: Password confirmation
+      game:
+        field_width: Field width
+        field_height: Field height
+        apples_count: Number of apples
+        barriers_count: Number of barriers
+    models:
+      user: User
+      game: Game
+  buttons:
+    log_in: Log In
+    log_out: Log out
+    sign_up: Sign Up
+    cancel: Cancel
+    statistics: Your statistics
+    start_statdart: Start standart game
+    start_custom: Start game with custom parameters
+    dropdown: 'Plans for the future:'
+    dropdown_info: Ability to play on mobile devices
+    all_statistics: All statistics
+    last_5: Last 5 games
+  games:
+    field:
+      text: Number of picked apples
+    header:
+      title: Game Python
+      hello: 'Hello, '
+    form_games:
+      game_standart: Standart game
+      game_custom: Game with custom parameters
+      width: Width field
+      height: Height field
+      number_of_apples: Number of apples
+      number_of_barriers: Number of barriers
+      errors_in_form: Errors in the form
+    index:
+      string_1: 'This is a classic Python (snake) game. The snake (ooooos) crawls around the field, collects apples ( @ ), and grows. It can collide with an obstacle ( # ). An eaten apple reappears in a new location.'
+      string_2: Movement is controlled with the arrow keys.
+      string_3: The update frequency is 0.3 seconds.
+      string_4: ESCAPE - exit the game.
+      string_5: 'You lose if:'
+      string_6: You go out of bounds
+      string_7: The head collides with the body
+      string_8: The head collides with an obstacle
+      string_9: At the end of the game, the reason for losing will be displayed, and you will be redirected to the main page.
+  users:
+    new:
+      name: Name
+      email: Email
+    show:
+      text_title: Your statistics
+      column_1: Game started
+      column_2: Game duration
+      column_3: Field size
+      column_4: Apples on the field
+      column_5: Barriers
+      column_6: Apples collected
+  sessions:
+    new:
+      email_label: Email
+      password_label: Password
+    create:
+      alert: Wrong email or password
+  messages_end:
+    escape: You pressed ESCAPE and exited the game!
+    self: You've caught up with your body!
+    out_of_bounds: You are out of bounds!
+    barrier: You've hit an barrier!
+  time:
+    sec: sec
+    min: min

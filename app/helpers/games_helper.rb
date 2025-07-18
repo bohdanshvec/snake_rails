@@ -6,9 +6,9 @@ module GamesHelper
     remaining_seconds = integer % 60
 
     if minutes >= 1
-      "#{minutes} хв #{remaining_seconds} сек"
+      "#{minutes} #{ t('time.min')} #{remaining_seconds} #{ t('time.sec')}"
     else
-      "#{remaining_seconds} сек"
+      "#{remaining_seconds} #{ t('time.sec')}"
     end
 
   end

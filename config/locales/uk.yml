@@ -1,0 +1,91 @@
+uk:
+  en: Англійська
+  uk: Українська
+  activerecord:
+    errors:
+      models:
+        game:
+          attributes:
+            apples_count:
+              too_many_apples: "не може бути більше ніж 2% від площі поля (макс %{max})"
+            barriers_count:
+              too_many_barriers: "не може бути більше ніж 2% від площі поля (макс %{max})"
+    attributes:
+      user:
+        username: Ім'я
+        email: Пошта
+        password: Пароль
+        password_confirmation: Підтвердження паролю
+      game:
+        field_width: Ширина поля
+        field_height: Висота поля
+        apples_count: Кількість яблук
+        barriers_count: Кількість перешкод
+      session:
+        email: Пошта
+        password: Пароль
+    models:
+      user: Користувач
+      game: Гра
+  buttons:
+    log_in: Вхід
+    log_out: Вийти
+    sign_up: Реєстрація
+    cancel: Скасувати
+    statistics: Ваша статистика
+    start_statdart: Почати стандартну гру
+    start_custom: Почати гру з параметрами
+    dropdown: 'Плани на майбутне:'
+    dropdown_info: 'Можливість грати на мобільних пристроях'
+    all_statistics: Уся статистика
+    last_5: Останні 5 ігор
+  games:
+    field:
+      text: Кількість зібраних яблук
+    header:
+      title: Гра Пітон
+      hello: 'Привіт, '
+    form_games:
+      game_standart: Стандартна гра
+      game_custom: Гра з заданими параметрами
+      width: Ширина поля
+      height: Висота поля
+      number_of_apples: Кількість яблук
+      number_of_barriers: Кількість перешкод
+      errors_in_form: Помилки у формі
+    index:
+      string_1: "Це класична гра пітон (змія). Пітон (ooooos) повзає по полю, збирає яблука ( @ ) та росте. Може зіткнутися з перешкодою ( # ). Яблуко яке з'їли з'являється на новому місці."
+      string_2: Рух відбувається за допомогою клавіш - стрілочок.
+      string_3: Частота оновлення 0.3 секунд.
+      string_4: ESCAPE - вихід з гри.
+      string_5: 'Ви програєте, якщо:'
+      string_6: Вийдете за межі поля
+      string_7: Голова зіткнеться з тілом
+      string_8: Голова зіткнеться з перешкодою
+      string_9: По закінченню гри буде вказата причина програшу, та ви вийдете на головну сторінку.
+  users:
+    new:
+      name: Ім'я
+      email: Пошта
+    show:
+      text_title: Ваша статистика
+      column_1: Гру розпочато
+      column_2: Тривалість гри
+      column_3: Розмір поля
+      column_4: Яблук на полі
+      column_5: Бар'єри
+      column_6: Зібрано яблук
+  sessions:
+    new:
+      email_label: Пошта
+      password_label: Пароль
+    create:
+      alert: Невірна пошта або пароль
+  messages_end:
+    escape: Ви натиснули ESCAPE та вийшли з гри!
+    self: Ви догнали своє тіло!
+    out_of_bounds: Ви вийшли за поле!
+    barrier: Ви зіткнулися з перешкодою!
+  time:
+    sec: сек
+    min: хв

@@ -6,11 +6,11 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
       respond_to do |format|
-        format.html { redirect_to root_path, notice: "Успішний вхід!" }
+        format.html { redirect_to root_path }
         format.turbo_stream
       end
     else
-      flash.now[:alert] = "Невірна пошта або пароль"
+      flash.now[:alert] = t('sessions.create.alert')
       render :new, status: :unprocessable_entity
     end
   end

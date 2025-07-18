@@ -34,11 +34,11 @@ class Game < ApplicationRecord
     max_allowed = (field_width * field_height * 0.02).floor
 
     if apples_count.present? && apples_count > max_allowed
-      errors.add(:apples_count, "не може бути більше ніж 2% від площі поля (макс #{max_allowed})")
+      errors.add(:apples_count, :too_many_apples, max: max_allowed)
     end
 
     if barriers_count.present? && barriers_count > max_allowed
-      errors.add(:barriers_count, "не може бути більше ніж 2% від площі поля (макс #{max_allowed})")
+      errors.add(:barriers_count, :too_many_barriers, max: max_allowed)
     end
   end
 end

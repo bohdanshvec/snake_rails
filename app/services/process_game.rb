@@ -1,9 +1,4 @@
 class ProcessGame
-  
-  ESCAPE = 'Ви натиснули ESCAPE та вийшли з гри!'
-  SELF = 'Ви догнали своє тіло!' 
-  OUT_OF_BOUNDS = 'Ви вийшли за поле!'
-  BARRIER = 'Ви зіткнулися з перешкодою!'
 
   attr_reader :snake, :direction, :apples, :turns
 
@@ -16,6 +11,10 @@ class ProcessGame
     @turns = turns
   end
 
+  def self.message_escape        = I18n.t('messages_end.escape')
+  def self.message_self      = I18n.t('messages_end.self')
+  def self.message_out_of_bounds = I18n.t('messages_end.out_of_bounds')
+  def self.message_barrier       = I18n.t('messages_end.barrier')
   def tick!
     ProcessModules::Turns.add_turns(@snake, @direction, @turns) if @direction
     ProcessModules::PositionSnake.change_direction_segment(@snake, @turns)
@@ -55,10 +54,10 @@ class ProcessGame
     head = snake.first
     body = snake[1..]
 
-    return [ESCAPE, true] if quit
-    return [SELF, true] if body.any? { |s| s[:x] == head[:x] && s[:y] == head[:y] }
-    return [BARRIER, true] if barriers.any? { |b| b[:x] == head[:x] && b[:y] == head[:y] }
-    return [OUT_OF_BOUNDS, true] if head[:y] < 1 || head[:y] > (config.field_height - 2) || head[:x] < 1 || head[:x] > (config.field_width - 2)
+    return [ProcessGame.message_escape, true] if quit
+    return [ProcessGame.message_self, true] if body.any? { |s| s[:x] == head[:x] && s[:y] == head[:y] }
+    return [ProcessGame.message_barrier, true] if barriers.any? { |b| b[:x] == head[:x] && b[:y] == head[:y] }
+    return [ProcessGame.message_out_of_bounds, true] if head[:y] < 1 || head[:y] > (config.field_height - 2) || head[:x] < 1 || head[:x] > (config.field_width - 2)
 
     false
   end

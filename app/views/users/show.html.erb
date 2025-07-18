@@ -2,18 +2,18 @@
   <div class="d-flex justify-content-center my-3">
     <div class="border rounded p-3" style="min-width: 620px;">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <h5 class="mb-0 fw-semibold">Ваша статистика :</h5>
-        <%= link_to "Закрити", games_path, class: "btn btn-sm btn-success" %>
+        <h5 class="mb-0 fw-semibold"><%= t('.text_title')%> :</h5>
+        <%= link_to t('buttons.cancel'), games_path, class: "btn btn-sm btn-success" %>
       </div>
       <table class="table table-sm table-striped table-bordered align-middle mb-0">
         <thead class="table-light text-center">
           <tr>
-            <th>Гру розпочато</th>
-            <th>Тривалість гри</th>
-            <th>Розмір поля</th>
-            <th>Розкидано яблук</th>
-            <th>Бар'єри</th>
-            <th>Зібрано яблук</th>
+            <th><%= t('.column_1') %></th>
+            <th><%= t('.column_2') %></th>
+            <th><%= t('.column_3') %></th>
+            <th><%= t('.column_4') %></th>
+            <th><%= t('.column_5') %></th>
+            <th><%= t('.column_6') %></th>
           </tr>
         </thead>
         <tbody class="text-center">
@@ -37,9 +37,9 @@
       </table>
       <div class="mt-2 text-end">
         <% if params[:all] %>
-          <%= link_to "Останні 5", user_path(@user), data: { turbo_frame: "login" }, class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to t('buttons.last_5'), user_path(@user), data: { turbo_frame: "login" }, class: "btn btn-sm btn-outline-primary" %>
         <% else %>
-          <%= link_to "Вся статистика", user_path(@user, all: true), data: { turbo_frame: "login" }, class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to t('buttons.all_statistics'), user_path(@user, all: true), data: { turbo_frame: "login" }, class: "btn btn-sm btn-outline-primary" %>
         <% end %>
       </div>
     </div>

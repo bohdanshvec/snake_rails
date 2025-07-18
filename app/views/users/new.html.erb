@@ -4,7 +4,7 @@
       <%= form_with  model: @user, class: "p-3", local: true do |f| %>
 
         <% if @user.errors.any? %>
-          <div class="alert alert-danger">
+          <div class="alert alert-danger fade show" role="alert" id="form-errors" data-controller="auto-dismiss">
             <ul>
               <% @user.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
@@ -15,12 +15,12 @@
 
         <div class="mb-2" style="max-width: 300px;">
           <%= f.label :username, class: "form-label small" %>
-          <%= f.text_field :username, value: params[:username], placeholder: 'Username', class: 'form-control form-control-sm' %>
+          <%= f.text_field :username, value: params[:username], placeholder: t('.name'), class: 'form-control form-control-sm' %>
         </div>
 
         <div class="mb-2" style="max-width: 300px;">
           <%= f.label :email, class: "form-label small" %>
-          <%= f.email_field :email, value: params[:email], placeholder: 'E-mail', class: 'form-control form-control-sm' %>
+          <%= f.email_field :email, value: params[:email], placeholder: t('.email'), class: 'form-control form-control-sm' %>
         </div>
 
         <div class="mb-2" style="max-width: 300px;">
@@ -29,8 +29,8 @@
         </div>
 
         <div class="d-flex justify-content-between" style="max-width: 300px;">
-          <%= f.submit "Реєстрація", class: "btn btn-sm btn-primary" %>
-          <%= link_to "Cancel", games_path, class: "btn btn-sm btn-secondary" %>
+          <%= f.submit t("buttons.sign_up"), class: "btn btn-sm btn-primary" %>
+          <%= link_to t("buttons.cancel"), games_path, class: "btn btn-sm btn-secondary" %>
         </div>
       <% end %>
     </div>

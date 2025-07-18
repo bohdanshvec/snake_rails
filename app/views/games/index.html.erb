@@ -1,129 +1,28 @@
-<header class="p-1 my-3 bg-secondary text-white">
-  <nav class="container d-flex align-items-center">
-    <h1 class="mb-0">Game Python</h1>
-
-    <div class="ms-auto d-flex align-items-center">
-      <% if user_signed_in? %>
-        <span class="me-2">Привіт, <%= current_user.username %>!</span>
-          <% if current_user.games.exists? %>
-            <%= link_to "Ваша статистика", user_path(current_user), data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
-          <% end %>
-        <%= link_to "Вийти", session_path, data: { turbo_method: :delete }, class: "btn btn-outline-light" %>
-      <% else %>
-        <%= link_to "Реєстрація", new_user_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
-        <%= link_to "Вхід", new_session_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light" %>
-      <% end %>
-    </div>
-  </nav>
-</header>
+<%= render 'header' %>
 
 <%= turbo_frame_tag 'login' %>
 
-<div class="container">
-  <div class="row">
-
-    <!-- Стандартна гра -->
-    <div class="col-md-6 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h4 class="card-title">Стандартна гра</h4>
-          <ul class="list-group list-group-flush mb-3">
-            <li class="list-group-item">Ширина поля: <strong>100</strong></li>
-            <li class="list-group-item">Висота поля: <strong>25</strong></li>
-            <li class="list-group-item">Кількість яблук: <strong>30</strong></li>
-            <li class="list-group-item">Кількість перешкод: <strong>30</strong></li>
-          </ul>
-
-          <%= button_to 'Почати стандартну гру', games_path, class: "btn btn-primary w-100", turbo_method: :post %>
-        </div>
-      </div>
-    </div>
-
-    <!-- Кастомна гра -->
-    <div class="col-md-6 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h4 class="card-title">Гра з заданими параметрами</h4>
-
-          <% if @game.errors.any? %>
-            <div class="alert alert-danger">
-              <h5>Помилки у формі:</h5>
-              <ul>
-                <% @game.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-
-          <%= form_with model: @game, url: games_path, method: :post, local: true do |f| %>
-
-            <div class="row mb-2 align-items-center">
-              <div class="col-6">
-                <%= f.label :field_width, "Ширина поля", class: "form-label mb-0" %>
-              </div>
-              <div class="col-6">
-                <%= f.number_field :field_width, min: 10, max: 200, class: "form-control" %>
-              </div>
-            </div>
-
-            <div class="row mb-2 align-items-center">
-              <div class="col-6">
-                <%= f.label :field_height, "Висота поля", class: "form-label mb-0" %>
-              </div>
-              <div class="col-6">
-                <%= f.number_field :field_height, min: 5, max: 50, class: "form-control" %>
-              </div>
-            </div>
-
-            <div class="row mb-2 align-items-center">
-              <div class="col-6">
-                <%= f.label :apples_count, "Кількість яблук", class: "form-label mb-0" %>
-              </div>
-              <div class="col-6">
-                <%= f.number_field :apples_count, min: 1, class: "form-control" %>
-              </div>
-            </div>
-
-            <div class="row mb-3 align-items-center">
-              <div class="col-6">
-                <%= f.label :barriers_count, "Кількість перешкод", class: "form-label mb-0" %>
-              </div>
-              <div class="col-6">
-                <%= f.number_field :barriers_count, min: 1, class: "form-control" %>
-              </div>
-            </div>
-
-            <%= f.submit "Почати гру з параметрами", class: "btn btn-success w-100" %>
-
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
+<%= render 'form_games' %>
 
 <div class='mx-3'>
-  <ul>Це класична гра пітон (змія). Пітон (ooooos) повзає по полю, збирає яблука ( @ ) та росте. Може зіткнутися з перешкодою ( # ). Яблуко яке з'їли з'являється на новому місці.</ul>
-  <ul>Рух відбувається за допомогою клавіш - стрілочок.</ul>
-  <ul>Частота оновлення 0.3 секунд.</ul>
-  <ul>ESCAPE - вихід з гри.</ul>
-  <ul class="text-danger ms-4"> Ви програєте, якщо:
-    <li class="ms-4">Вийдете за межі поля</li>
-    <li class="ms-4">Голова зіткнеться з тілом</li>
-    <li class="ms-4">Голова зіткнеться з перешкодою</li>
+  <ul><%= t('.string_1') %></ul>
+  <ul><%= t('.string_2') %></ul>
+  <ul><%= t('.string_3') %></ul>
+  <ul><%= t('.string_4') %></ul>
+  <ul class="text-danger ms-4"><%= t('.string_5') %>
+    <li class="ms-4"><%= t('.string_6') %></li>
+    <li class="ms-4"><%= t('.string_7') %></li>
+    <li class="ms-4"><%= t('.string_8') %></li>
   </ul>
 
-  <ul>По закінченню гри буде вказата причина програшу, та ви вийдете на головну сторінку.</ul>
+  <ul><%= t('.string_9') %></ul>
 
   <div class="dropdown">
     <button class="btn btn-info dropdown-toggle ms-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Плани на майбутне:
+      <%= t('buttons.dropdown') %>
     </button>
     <ul class="dropdown-menu bg-secondary">
-      <li class="dropdown-item text-white">- Дві мови, українська та англійська</li>
-      <li class="dropdown-item text-white">- Можливість грати на мобільних пристроях</li>
+      <li class="dropdown-item text-white"><%= t('buttons.dropdown_info') %></li>
     </ul>
   </div>
 </div>

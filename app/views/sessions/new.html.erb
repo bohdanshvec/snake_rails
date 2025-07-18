@@ -4,24 +4,24 @@
       <%= form_with url: session_path, class: "p-3", local: true do |f| %>
 
         <% if flash[:alert] %>
-          <div class="alert alert-danger py-1 px-2 small mb-2">
+          <div class="alert alert-danger fade show" role="alert" id="form-errors" data-controller="auto-dismiss py-1 px-2 small mb-2">
             <%= flash[:alert] %>
           </div>
         <% end %>
 
         <div class="mb-2" style="max-width: 300px;">
-          <%= f.label :email, class: "form-label small" %>
+          <%= f.label :email, t('sessions.new.email_label'), class: "form-label small" %>
           <%= f.email_field :email, value: params[:email], placeholder: 'E-mail', class: 'form-control form-control-sm' %>
         </div>
 
         <div class="mb-2" style="max-width: 300px;">
-          <%= f.label :password, class: "form-label small" %>
+          <%= f.label :password, t('sessions.new.password_label'), class: "form-label small" %>
           <%= f.password_field :password, class: 'form-control form-control-sm' %>
         </div>
 
         <div class="d-flex justify-content-between" style="max-width: 300px;">
-          <%= f.submit "Вхід", class: "btn btn-sm btn-primary" %>
-          <%= link_to "Cancel", games_path, class: "btn btn-sm btn-secondary" %>
+          <%= f.submit t("buttons.log_in"), class: "btn btn-sm btn-primary" %>
+          <%= link_to t('buttons.cancel'), games_path, class: "btn btn-sm btn-secondary" %>
         </div>
       <% end %>
     </div>

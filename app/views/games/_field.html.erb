@@ -4,7 +4,7 @@
       <span class="text-danger"><%= @text_game_over %></span>
       <% if @game.apples_count > 0 %>
         <br>
-        <span style="color: green;">Кількість зібраних яблук: <%= @snake.count - 6 %></span>
+        <span style="color: green;"><%= t('.text') %>: <%= @snake.count - 6 %></span>
       <% end %>
     </div>
   <% end %>
