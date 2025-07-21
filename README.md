@@ -24,7 +24,7 @@ At the end of the game, the reason for the loss is displayed, and you are redire
 ---
 
 ## 🛠️ Roadmap (Planned Features)
-
+now
 - [ ] Add **mobile device support**
 
 ---
