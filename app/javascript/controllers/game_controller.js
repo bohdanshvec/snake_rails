@@ -9,6 +9,7 @@ export default class extends Controller {
     this.nextDirection = null
     this.quit = false
     this.handleKey = this.handleKey.bind(this)
+    this.handleTouch = this.handleTouch.bind(this)
 
     if (!this.hasGameIdValue || this.gameIdValue <= 0) {
       requestAnimationFrame(() => this.waitForGameId())
@@ -28,13 +29,11 @@ export default class extends Controller {
   }
 
   initializeGame() {
-    console.log('Game ID:', this.gameIdValue)
     document.addEventListener('keydown', this.handleKey)
     this.startLoop()
   }
 
   disconnect() {
-    console.log('Game controller disconnected')
     clearInterval(this.interval)
     document.removeEventListener('keydown', this.handleKey)
   }
@@ -56,38 +55,41 @@ export default class extends Controller {
     }
   }
 
+  handleTouch(event) {
+    const button = event.target.closest('button[data-direction]')
+    if (!button) return
+
+    const direction = button.dataset.direction
+    if (['up', 'down', 'left', 'right'].includes(direction)) {
+      this.nextDirection = direction
+    }
+  }
+
   startLoop() {
     this.interval = setInterval(() => this.tick(), 300)
   }
 
   tick() {
-    // Если quit уже нажали — останови цикл до запроса
-    // if (this.quit) {
-    //   clearInterval(this.interval)
-    //   alert('Game over!')
-    //   return
-    // }
-
     if (this.nextDirection) {
       this.direction = this.nextDirection
       this.nextDirection = null
     }
 
-    let headers = {
+    const headers = {
       Accept: 'text/vnd.turbo-stream.html',
       'X-CSRF-Token': document.querySelector("meta[name='csrf-token']").content,
       'Content-Type': 'application/json',
     }
 
-    let body = JSON.stringify({
+    const body = JSON.stringify({
       direction: this.direction,
       quit: this.quit,
     })
 
     fetch(`/games/${this.gameIdValue}`, {
       method: 'PATCH',
-      headers: headers,
-      body: body,
+      headers,
+      body,
     })
       .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok')
@@ -101,7 +103,6 @@ export default class extends Controller {
           alert('Game over!')
           clearInterval(this.interval)
           Turbo.visit('/games')
-          return
         }
       })
       .catch((error) => {

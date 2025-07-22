@@ -1,3 +1,26 @@
 <div data-controller="game" data-game-game-id-value="<%= @game.id %>">
-  <%= render partial: "games/field", locals: { field: @field, game_over: @game_over } %>
+  <div class="vertical-fit-container pb-2">
+
+    <%= render partial: "games/field", locals: { field: @field, game_over: @game_over } %>
+
+    <div class="touch-controls mt-3">
+      <div class="d-flex justify-content-center gap-2">
+        <button class="btn btn-outline-primary btn-sm px-3"
+                data-direction="up"
+                data-action="click->game#handleTouch">↑</button>
+      </div>
+      <div class="d-flex justify-content-center gap-2 mt-2">
+        <button class="btn btn-outline-primary btn-sm px-3"
+                data-direction="left"
+                data-action="click->game#handleTouch">←</button>
+        <button class="btn btn-outline-primary btn-sm px-3"
+                data-direction="down"
+                data-action="click->game#handleTouch">↓</button>
+        <button class="btn btn-outline-primary btn-sm px-3"
+                data-direction="right"
+                data-action="click->game#handleTouch">→</button>
+      </div>
+    </div>
+
+  </div>
 </div>

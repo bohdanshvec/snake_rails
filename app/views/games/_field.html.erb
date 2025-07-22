@@ -1,5 +1,5 @@
-<div class="vertical-fit-container pb-2">
 <div id="field" class="ascii-block" data-game-over="<%= game_over %>">
+
   <% if @text_game_over %>
     <div class="fs-6 ms-2 mt-1">
       <span class="text-danger"><%= @text_game_over %></span>
@@ -20,16 +20,4 @@
     <% end %>
   </div>
 
-  <div class="touch-controls">
-    <div class="d-flex justify-content-center gap-2">
-      <button class="btn btn-outline-primary btn-sm px-3" data-direction="up">↑</button>
-    </div>
-    <div class="d-flex justify-content-center gap-2">
-      <button class="btn btn-outline-primary btn-sm px-3" data-direction="left">←</button>
-      <button class="btn btn-outline-primary btn-sm px-3" data-direction="down">↓</button>
-      <button class="btn btn-outline-primary btn-sm px-3" data-direction="right">→</button>
-    </div>
-  </div>
-
-</div>
 </div>
