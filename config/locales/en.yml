@@ -32,8 +32,6 @@ en:
     statistics: Your statistics
     start_statdart: Start standart game
     start_custom: Start game with custom parameters
-    dropdown: 'Plans for the future:'
-    dropdown_info: Ability to play on mobile devices
     all_statistics: All statistics
     last_5: Last 5 games
   games:

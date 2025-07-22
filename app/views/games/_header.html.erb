@@ -1,17 +1,21 @@
-<header class="p-1 my-3 bg-secondary text-white">
-  <nav class="container d-flex align-items-center">
-    <h1 class="mb-0"><%= t('.title') %></h1>
+<header class="p-2 bg-secondary text-white">
+  <div class="container-fluid">
+    <div class="row align-items-center">
 
-    <div class="ms-auto d-flex align-items-center">
-      <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
-        <li class="dropdown me-2">
+      <!-- Левая часть: Заголовок -->
+      <div class="col-12 col-md d-flex justify-content-between align-items-center order-1 order-md-0 mb-2 mb-md-0">
+        <!-- Заголовок -->
+        <h1 class="mb-0 fs-4"><%= t('.title') %></h1>
+
+        <!-- Языковое меню справа в той же строке -->
+        <div class="dropdown">
           <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white d-flex align-items-center',
                 data: { "bs-toggle": 'dropdown' } do %>
             <%= flag_for(I18n.locale) %>
             <%= t(I18n.locale) %>
           <% end %>
 
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu dropdown-menu-end">
             <% I18n.available_locales.each do |locale| %>
               <li>
                 <% if I18n.locale == locale %>
@@ -26,18 +30,24 @@
               </li>
             <% end %>
           </ul>
-        </li>
-      </ul>
-      <% if user_signed_in? %>
-        <span class="me-2"><%= t('.hello') %> <%= current_user.username %>!</span>
+        </div>
+      </div>
+
+      <!-- Правая часть: Кнопки -->
+      <div class="col-12 col-md-auto d-flex justify-content-center justify-content-md-end align-items-center flex-wrap gap-2 order-2 order-md-1">
+        <% if user_signed_in? %>
+          <span class="text-white"><%= t('.hello') %> <%= current_user.username %>!</span>
           <% if current_user.games.exists? %>
-            <%= link_to t('buttons.statistics'), user_path(current_user), data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
+            <%= link_to t('buttons.statistics'), user_path(current_user), data: { turbo_frame: 'login' }, class: "btn btn-outline-light btn-sm" %>
           <% end %>
-        <%= link_to t('buttons.log_out'), session_path, data: { turbo_method: :delete }, class: "btn btn-outline-light" %>
-      <% else %>
-        <%= link_to t('buttons.sign_up'), new_user_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light me-2" %>
-        <%= link_to t('buttons.log_in'), new_session_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light" %>
-      <% end %>
+          <%= link_to t('buttons.log_out'), session_path, data: { turbo_method: :delete }, class: "btn btn-outline-light btn-sm" %>
+        <% else %>
+          <%= link_to t('buttons.sign_up'), new_user_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light btn-sm" %>
+          <%= link_to t('buttons.log_in'), new_session_path, data: { turbo_frame: 'login' }, class: "btn btn-outline-light btn-sm" %>
+        <% end %>
+      </div>
+
     </div>
-  </nav>
+  </div>
 </header>
+

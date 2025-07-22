@@ -1,41 +1,47 @@
 <%= turbo_frame_tag "login" do %>
-  <div class="d-flex justify-content-center my-3">
-    <div class="border rounded p-3" style="min-width: 620px;">
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <h5 class="mb-0 fw-semibold"><%= t('.text_title')%> :</h5>
+  <div class="container my-3 px-2">
+    <div class="border rounded p-2 w-100">
+      <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+        <h5 class="mb-0 fw-semibold fs-6"><%= t('.text_title') %> :</h5>
         <%= link_to t('buttons.cancel'), games_path, class: "btn btn-sm btn-success" %>
       </div>
-      <table class="table table-sm table-striped table-bordered align-middle mb-0">
-        <thead class="table-light text-center">
-          <tr>
-            <th><%= t('.column_1') %></th>
-            <th><%= t('.column_2') %></th>
-            <th><%= t('.column_3') %></th>
-            <th><%= t('.column_4') %></th>
-            <th><%= t('.column_5') %></th>
-            <th><%= t('.column_6') %></th>
-          </tr>
-        </thead>
-        <tbody class="text-center">
-          <% @games.each do |game| %>
+
+      <!-- Обёртка для адаптива -->
+      <div class="table-responsive">
+        <table class="table table-sm table-bordered align-middle text-center w-100"
+               style="font-size: clamp(9px, 2vw, 13px); word-wrap: break-word; table-layout: fixed;">
+          <thead class="table-light">
             <tr>
-              <td><%= l(game.created_at, format: :short) %></td>
-              <td><%= duration_text(game.duration) || "—" %></td>
-              <td><%= "#{game.field_width} × #{game.field_height}" %></td>
-              <td><%= game.apples_count.to_i > 0 ? game.apples_count : "—" %></td>
-              <td><%= game.barriers_count.to_i > 0 ? game.barriers_count : "—" %></td>
-              <td>
-                <% if game.apples_count && (game.apples_count != 0) %>
-                  <%= game.collected_apples.to_i %>
-                <% else %>
-                  <%= game.collected_apples.to_i > 0  ? game.collected_apples : "—" %>
-                <% end %>
-              </td>
+              <th class="text-center align-middle" style="width: 16%"><%= t('.column_1') %></th>
+              <th class="text-center align-middle" style="width: 16%"><%= t('.column_2') %></th>
+              <th class="text-center align-middle" style="width: 16%"><%= t('.column_3') %></th>
+              <th class="text-center align-middle" style="width: 16%"><%= t('.column_4') %></th>
+              <th class="text-center align-middle" style="width: 16%"><%= t('.column_5') %></th>
+              <th class="text-center align-middle" style="width: 20%"><%= t('.column_6') %></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <div class="mt-2 text-end">
+          </thead>
+          <tbody>
+            <% @games.each do |game| %>
+              <tr>
+                <td><%= l(game.created_at, format: :short) %></td>
+                <td><%= duration_text(game.duration) || "—" %></td>
+                <td><%= "#{game.field_width} × #{game.field_height}" %></td>
+                <td><%= game.apples_count.to_i > 0 ? game.apples_count : "—" %></td>
+                <td><%= game.barriers_count.to_i > 0 ? game.barriers_count : "—" %></td>
+                <td>
+                  <% if game.apples_count && game.apples_count != 0 %>
+                    <%= game.collected_apples.to_i %>
+                  <% else %>
+                    <%= game.collected_apples.to_i > 0 ? game.collected_apples : "—" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="text-end mt-2">
         <% if params[:all] %>
           <%= link_to t('buttons.last_5'), user_path(@user), data: { turbo_frame: "login" }, class: "btn btn-sm btn-outline-primary" %>
         <% else %>

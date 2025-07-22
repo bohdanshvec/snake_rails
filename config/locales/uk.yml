@@ -35,8 +35,6 @@ uk:
     statistics: Ваша статистика
     start_statdart: Почати стандартну гру
     start_custom: Почати гру з параметрами
-    dropdown: 'Плани на майбутне:'
-    dropdown_info: 'Можливість грати на мобільних пристроях'
     all_statistics: Уся статистика
     last_5: Останні 5 ігор
   games:
