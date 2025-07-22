@@ -49,6 +49,7 @@ en:
       number_of_barriers: Number of barriers
       errors_in_form: Errors in the form
     index:
+      string_0: 'IMPORTANT: The game field scales based on the screen size (especially on mobile devices). Please set appropriate field dimensions.'
       string_1: 'This is a classic Python (snake) game. The snake (ooooos) crawls around the field, collects apples ( @ ), and grows. It can collide with an obstacle ( # ). An eaten apple reappears in a new location.'
       string_2: Movement is controlled with the arrow keys.
       string_3: The update frequency is 0.3 seconds.
