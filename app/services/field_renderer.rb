@@ -1,32 +1,38 @@
 class FieldRenderer
+  include GameConstants
 
-  def self.default_field(config)
+  APPLE      = '🍏'
+  BARRIER    = '🧱'
+  FIELD      = '⬜'
+  SNAKE_BODY = '🟢'
+  SNAKE_HEAD = '🐲'
+
+  def self.default_field
     arr = []
-    arr << ("-" * config.field_width)
-    (config.field_height - 2).times { arr << ("|" + " " * (config.field_width - 2) + "|") }
-    arr << ("-" * config.field_width)
+    arr << (BARRIER * FIELD_WIDTH)
+    FIELD_HEIGHT_GAMING.times { arr << (BARRIER + FIELD * FIELD_WIDTH_GAMING + BARRIER) }
+    arr << (BARRIER * FIELD_WIDTH)
     arr
   end
 
-  def self.render_field(snake, barriers, apples, config)
-
-    arr_print = default_field(config).map(&:dup)
+  def self.render_field(snake, barriers, apples)
+    arr_print = default_field.map(&:dup)
     snake.each_with_index do |coord, index|
       x = coord[:x]
       y = coord[:y]
-      arr_print[y][x] = index.zero? ? 's' : 'o'
+      arr_print[y][x] = index.zero? ? SNAKE_HEAD : SNAKE_BODY
     end
 
     barriers.each do |barrier|
       x = barrier[:x]
       y = barrier[:y]
-      arr_print[y][x] = '#'
+      arr_print[y][x] = BARRIER
     end
 
     apples.each do |apple|
       x = apple[:x]
       y = apple[:y]
-      arr_print[y][x] = '@'
+      arr_print[y][x] = APPLE
     end
 
     arr_print
