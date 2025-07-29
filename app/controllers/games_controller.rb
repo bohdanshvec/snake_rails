@@ -15,10 +15,10 @@ class GamesController < ApplicationController
     GameData.delete_old_cookies(cookies)
 
     game_attributes = params[:game]&.permit(:field_width, :field_height, :apples_count, :barriers_count) || {
-      field_width: 110,
+      field_width: 50,
       field_height: 25,
-      apples_count: 30,
-      barriers_count: 30
+      apples_count: 10,
+      barriers_count: 10
     }
 
     @game = Game.new(game_attributes)
