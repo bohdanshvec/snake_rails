@@ -68,6 +68,7 @@ uk:
       email: Пошта
     show:
       text_title: Ваша статистика
+      total_games: Всього ігор
       column_1: Гру розпочато
       column_2: Тривалість гри
       column_3: Розмір поля

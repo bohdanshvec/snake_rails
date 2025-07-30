@@ -7,10 +7,10 @@
         <div class="card-body">
           <h4 class="card-title"><%= t('.game_standart') %></h4>
           <ul class="list-group list-group-flush mb-3">
-            <li class="list-group-item"><%= t('.width') %>: <strong><%= @cookies[:field_width] %></strong></li>
-            <li class="list-group-item"><%= t('.height') %>: <strong><%= @cookies[:field_height] %></strong></li>
-            <li class="list-group-item"><%= t('.number_of_apples') %>: <strong><%= @cookies[:apples_count] %></strong></li>
-            <li class="list-group-item"><%= t('.number_of_barriers') %>: <strong><%= @cookies[:barriers_count] %></strong></li>
+            <li class="list-group-item"><%= t('.width') %>: <strong>50</strong></li>
+            <li class="list-group-item"><%= t('.height') %>: <strong>25</strong></li>
+            <li class="list-group-item"><%= t('.number_of_apples') %>: <strong>10</strong></li>
+            <li class="list-group-item"><%= t('.number_of_barriers') %>: <strong>10</strong></li>
           </ul>
 
           <%= button_to t('buttons.start_statdart'), games_path, class: "btn btn-primary w-100", turbo_method: :post %>

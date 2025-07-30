@@ -65,6 +65,7 @@ en:
       email: Email
     show:
       text_title: Your statistics
+      total_games: total games
       column_1: Game started
       column_2: Game duration
       column_3: Field size

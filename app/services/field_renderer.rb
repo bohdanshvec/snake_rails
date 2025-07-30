@@ -3,7 +3,7 @@ class FieldRenderer
   APPLE      = '🍏'
   BARRIER    = '🧱'
   FIELD      = '⬜'
-  SNAKE_BODY = '🟢'
+  SNAKE_BODY = '🟤'
   SNAKE_HEAD = '🐲'
   FRAME      = 2
 
